@@ -14,6 +14,5 @@ public class ApplicationRunner {
         var connectionPool = get(ConnectionPool.class);
         var userRepository = get(UserRepository.class);
         var userService = get(UserService.class);
-        
     }
 }
