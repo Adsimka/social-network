@@ -1,5 +1,5 @@
 package database.pool;
 
-public class ConnectionPool {
-
+public class ConnectionPool
+{
 }
