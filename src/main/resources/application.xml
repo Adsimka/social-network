@@ -3,6 +3,11 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+
+    <bean id="driver" class="java.lang.String">
+        <constructor-arg type="java.lang.String" value="PostgresDriver"/>
+    </bean>
+
     <bean id="pool" name="p" class="database.pool.ConnectionPool">
         <constructor-arg index="0" type="java.lang.String" value="postgres"/>
         <constructor-arg index="1" value="6"/>
@@ -18,4 +23,7 @@
         </constructor-arg>
     </bean>
 
+    <bean id="userRepository" class="repository.UserRepository" factory-method="of">
+        <constructor-arg type="database.pool.ConnectionPool" ref="pool"/>
+    </bean>
 </beans>
