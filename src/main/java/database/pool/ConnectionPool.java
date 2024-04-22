@@ -27,4 +27,12 @@ public class ConnectionPool
                 ", properties=" + properties +
                 '}';
     }
+
+    private void init() {
+        System.out.println("Initialization of connection pool");
+    }
+
+    private void destroy() {
+        System.out.println("Destroying connection pool");
+    }
 }

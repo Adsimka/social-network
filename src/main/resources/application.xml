@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
-
+    <context:property-placeholder location="classpath:application.properties"/>
     <bean id="driver" class="java.lang.String">
-        <constructor-arg type="java.lang.String" value="PostgresDriver"/>
+        <constructor-arg type="java.lang.String" value="${db.driver}"/>
     </bean>
 
-    <bean id="pool" name="p" class="database.pool.ConnectionPool" scope="prototype">
-        <constructor-arg index="0" type="java.lang.String" value="postgres"/>
+    <bean id="pool" name="p" class="database.pool.ConnectionPool"
+          init-method="init" destroy-method="destroy">
+        <constructor-arg index="0" type="java.lang.String" value="${db.username}"/>
         <constructor-arg index="1" value="6"/>
         <constructor-arg index="2">
             <list>
@@ -19,6 +24,8 @@
         <constructor-arg index="3">
             <map>
                 <entry key="url" value="https://www.google.com"/>
+                <entry key="currentUser" value="${user.name}"/>
+                <entry key="hosts" value="#{'${db.hosts}'.split(',')}"/>
             </map>
         </constructor-arg>
     </bean>
