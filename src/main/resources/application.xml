@@ -8,7 +8,7 @@
         <constructor-arg type="java.lang.String" value="PostgresDriver"/>
     </bean>
 
-    <bean id="pool" name="p" class="database.pool.ConnectionPool">
+    <bean id="pool" name="p" class="database.pool.ConnectionPool" scope="prototype">
         <constructor-arg index="0" type="java.lang.String" value="postgres"/>
         <constructor-arg index="1" value="6"/>
         <constructor-arg index="2">
