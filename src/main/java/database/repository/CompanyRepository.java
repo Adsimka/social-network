@@ -7,6 +7,8 @@ import database.pool.ConnectionPool;
 import database.entity.Company;
 import jakarta.annotation.PostConstruct;
 import lombok.ToString;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Optional;
 
@@ -15,8 +17,11 @@ import java.util.Optional;
 @Transaction
 public class CompanyRepository implements CRUDRepository<Long, Company> {
 
-    @InjectBean
+    @Autowired
     private ConnectionPool connectionPool;
+
+    @Value("${db.pool.size}")
+    private Integer poolSize;
 
     @PostConstruct
     void initialize() {
