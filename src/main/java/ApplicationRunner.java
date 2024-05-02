@@ -1,9 +1,8 @@
 import database.pool.ConnectionPool;
+import database.repository.CRUDRepository;
+import database.repository.CompanyRepository;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import repository.UserRepository;
-import service.UserService;
-
-import static ioc.Container.get;
+import database.repository.UserRepository;
 
 public class ApplicationRunner
 {
@@ -12,8 +11,8 @@ public class ApplicationRunner
             var connectionPool = context.getBean("p", ConnectionPool.class);
             System.out.println(connectionPool);
 
-            var userRepository = context.getBean("userRepository", UserRepository.class);
-            System.out.println(userRepository);
+            var companyRepository = context.getBean("companyRepository", CRUDRepository.class);
+            System.out.println(companyRepository);
         }
         System.out.println();
     }

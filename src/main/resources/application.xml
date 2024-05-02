@@ -16,6 +16,9 @@
     </bean>
 
     <bean class="bpp.InjectBeanPostProcessor"/>
+    <bean class="bpp.TransactionBeanPostProcessor"/>
+    <bean class="bpp.AuditBeanPostProcessor"/>
+
 
     <bean id="pool" name="p" class="database.pool.ConnectionPool">
         <constructor-arg index="0" type="java.lang.String" value="${db.username}"/>
@@ -34,5 +37,7 @@
         </constructor-arg>
     </bean>
 
-    <bean id="userRepository" class="repository.UserRepository"/>
+    <bean id="userRepository" class="database.repository.UserRepository"/>
+
+    <bean id="companyRepository" class="database.repository.CompanyRepository"/>
 </beans>

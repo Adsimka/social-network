@@ -1,4 +1,4 @@
-package repository;
+package database.repository;
 
 import bpp.InjectBean;
 import database.pool.ConnectionPool;

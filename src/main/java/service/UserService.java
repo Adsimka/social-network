@@ -1,6 +1,6 @@
 package service;
 
-import repository.UserRepository;
+import database.repository.UserRepository;
 
 public class UserService {
     private final UserRepository userRepository;
