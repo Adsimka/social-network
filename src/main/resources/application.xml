@@ -7,37 +7,27 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
-    <context:annotation-config/>
+    <context:component-scan base-package="com.adsima"/>
     <context:property-placeholder location="classpath:application.properties"/>
 
-    <bean class="bfpp.LogBeanFactoryPostProcessor"/>
     <bean id="driver" class="java.lang.String">
         <constructor-arg type="java.lang.String" value="${db.driver}"/>
     </bean>
 
-    <bean class="bpp.InjectBeanPostProcessor"/>
-    <bean class="bpp.TransactionBeanPostProcessor"/>
-    <bean class="bpp.AuditBeanPostProcessor"/>
-
-
-    <bean id="pool" name="p" class="database.pool.ConnectionPool">
-        <constructor-arg index="0" type="java.lang.String" value="${db.username}"/>
-        <constructor-arg index="1" value="6"/>
-        <constructor-arg index="2">
-            <list>
-                <value>arg1</value>
-            </list>
-        </constructor-arg>
-        <constructor-arg index="3">
-            <map>
-                <entry key="url" value="https://www.google.com"/>
-                <entry key="currentUser" value="${user.name}"/>
-                <entry key="hosts" value="#{'${db.hosts}'.split(',')}"/>
-            </map>
-        </constructor-arg>
-    </bean>
-
-    <bean id="userRepository" class="database.repository.UserRepository"/>
-
-    <bean id="companyRepository" class="database.repository.CompanyRepository"/>
 </beans>
+
+
+<!--<constructor-arg index="0" type="java.lang.String" value="${db.username}"/>-->
+<!--<constructor-arg index="1" value="6"/>-->
+<!--<constructor-arg index="2">-->
+<!--<list>-->
+<!--    <value>arg1</value>-->
+<!--</list>-->
+<!--</constructor-arg>-->
+<!--<constructor-arg index="3">-->
+<!--<map>-->
+<!--    <entry key="url" value="https://www.google.com"/>-->
+<!--    <entry key="currentUser" value="${user.name}"/>-->
+<!--    <entry key="hosts" value="#{'${db.hosts}'.split(',')}"/>-->
+<!--</map>-->
+<!--</constructor-arg>-->

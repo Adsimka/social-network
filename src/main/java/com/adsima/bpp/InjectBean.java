@@ -1,4 +1,4 @@
-package bpp;
+package com.adsima.bpp;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

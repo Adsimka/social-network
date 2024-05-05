@@ -1,4 +1,4 @@
-package ioc;
+package com.adsima.ioc;
 
 public class Container
 {
