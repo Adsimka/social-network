@@ -1,13 +1,14 @@
 package com.adsima;
 
+import com.adsima.config.ApplicationConfiguration;
 import com.adsima.database.pool.ConnectionPool;
 import com.adsima.database.repository.CRUDRepository;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class ApplicationRunner
 {
     public static void main(String[] args) {
-        try (var context = new ClassPathXmlApplicationContext("application.xml")) {
+        try (var context = new AnnotationConfigApplicationContext(ApplicationConfiguration.class)) {
             var connectionPool = context.getBean("pool1", ConnectionPool.class);
             System.out.println(connectionPool);
 
