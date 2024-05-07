@@ -19,19 +19,11 @@ public class ConnectionPool
 
     @PostConstruct
     private void init() {
-        System.out.println("Initialization of connection pool");
+        System.out.println("Initialization of connection pool - " + ConnectionPool.class.getName());
     }
 
     @PreDestroy
     private void destroy() {
         System.out.println("Destroying connection pool");
-    }
-
-    @Override
-    public String toString() {
-        return "ConnectionPool{" +
-                "username='" + username + '\'' +
-                ", poolSize=" + poolSize  +
-                '}';
     }
 }
