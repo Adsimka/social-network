@@ -1,8 +1,8 @@
-package com.adsima.service;
+package com.adsima.spring.service;
 
-import com.adsima.database.entity.Company;
-import com.adsima.database.repository.CRUDRepository;
-import com.adsima.database.repository.UserRepository;
+import com.adsima.spring.database.entity.Company;
+import com.adsima.spring.database.repository.CRUDRepository;
+import com.adsima.spring.database.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service

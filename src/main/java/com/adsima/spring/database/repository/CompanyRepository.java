@@ -1,9 +1,9 @@
-package com.adsima.database.repository;
+package com.adsima.spring.database.repository;
 
-import com.adsima.bpp.Audit;
-import com.adsima.bpp.Transaction;
-import com.adsima.database.entity.Company;
-import com.adsima.database.pool.ConnectionPool;
+import com.adsima.spring.bpp.Audit;
+import com.adsima.spring.bpp.Transaction;
+import com.adsima.spring.database.entity.Company;
+import com.adsima.spring.database.pool.ConnectionPool;
 import jakarta.annotation.PostConstruct;
 import lombok.ToString;
 import org.springframework.beans.factory.annotation.Value;

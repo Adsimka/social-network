@@ -1,4 +1,4 @@
-package com.adsima.ioc;
+package com.adsima.spring.ioc;
 
 public class Container
 {

@@ -1,4 +1,4 @@
-package com.adsima.service;
+package com.adsima.spring.service;
 
 import org.springframework.stereotype.Service;
 

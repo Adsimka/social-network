@@ -1,4 +1,4 @@
-package com.adsima.database.repository;
+package com.adsima.spring.database.repository;
 
 import java.io.Serializable;
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package com.adsima.database.pool;
+package com.adsima.spring.database.pool;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;

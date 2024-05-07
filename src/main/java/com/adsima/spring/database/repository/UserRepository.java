@@ -1,7 +1,7 @@
-package com.adsima.database.repository;
+package com.adsima.spring.database.repository;
 
-import com.adsima.bpp.InjectBean;
-import com.adsima.database.pool.ConnectionPool;
+import com.adsima.spring.bpp.InjectBean;
+import com.adsima.spring.database.pool.ConnectionPool;
 import org.springframework.stereotype.Repository;
 
 @Repository

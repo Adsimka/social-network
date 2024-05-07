@@ -1,4 +1,4 @@
-package com.adsima.bfpp;
+package com.adsima.spring.bfpp;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
