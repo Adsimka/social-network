@@ -1,7 +1,6 @@
 package com.adsima.spring.database.repository;
 
 import com.adsima.spring.bpp.Audit;
-import com.adsima.spring.bpp.Transaction;
 import com.adsima.spring.database.entity.Company;
 import com.adsima.spring.database.pool.ConnectionPool;
 import jakarta.annotation.PostConstruct;
@@ -13,9 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-@Audit
-@Transaction
-@Repository
+@Repository()
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
 public class CompanyRepository implements CRUDRepository<Long, Company>
 {
