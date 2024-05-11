@@ -12,7 +12,7 @@ public class UserRepository
 {
     private final ConnectionPool connectionPool;
 
-    public UserRepository(@Qualifier("pool2") ConnectionPool connectionPool) {
+    public UserRepository(@Qualifier("pool1") ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
     }
 }

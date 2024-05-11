@@ -15,6 +15,7 @@ import org.springframework.context.annotation.*;
 public class ApplicationConfiguration
 {
     @Bean("pool2")
+    @Profile("prod")
     @Scope(BeanDefinition.SCOPE_SINGLETON)
     public ConnectionPool pool2(@Value("${db.username}") String username) {
         System.out.println("Initializing connection pool2");
@@ -22,6 +23,7 @@ public class ApplicationConfiguration
     }
 
     @Bean
+    @Profile("web")
     public UserRepository userRepository2(@Qualifier("pool2") ConnectionPool pool2) {
         return new UserRepository(pool2);
     }
