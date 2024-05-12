@@ -4,6 +4,7 @@ import com.adsima.spring.bpp.Audit;
 import com.adsima.spring.database.entity.Company;
 import com.adsima.spring.database.pool.ConnectionPool;
 import jakarta.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -14,16 +15,13 @@ import java.util.Optional;
 
 @Repository()
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
+@RequiredArgsConstructor
 public class CompanyRepository implements CRUDRepository<Long, Company>
 {
+    @Qualifier("pool2")
     private final ConnectionPool connectionPool;
+    @Value("${db.pool.size}")
     private final Integer poolSize;
-
-    public CompanyRepository(@Qualifier("pool2") ConnectionPool connectionPool,
-                             @Value("${db.pool.size}") Integer poolSize) {
-        this.connectionPool = connectionPool;
-        this.poolSize = poolSize;
-    }
 
     @PostConstruct
     void initialize() {
