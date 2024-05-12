@@ -10,8 +10,6 @@ import org.springframework.context.annotation.*;
 
 @Import(WebConfiguration.class)
 @Configuration
-@PropertySource(value = "classpath:application.properties")
-@ComponentScan(value = "com.adsima")
 public class ApplicationConfiguration
 {
     @Bean("pool2")
