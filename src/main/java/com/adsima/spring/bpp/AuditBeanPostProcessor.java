@@ -1,5 +1,6 @@
 package com.adsima.spring.bpp;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
@@ -8,10 +9,11 @@ import java.lang.reflect.Proxy;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 @Component
 public class AuditBeanPostProcessor implements BeanPostProcessor
 {
-    private Map<String, Class<?>> auditBeans = new HashMap<>();
+    private final Map<String, Class<?>> auditBeans = new HashMap<>();
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
@@ -26,11 +28,11 @@ public class AuditBeanPostProcessor implements BeanPostProcessor
         Class<?> aClass = auditBeans.get(beanName);
         if (aClass != null) {
             return Proxy.newProxyInstance(aClass.getClassLoader(), aClass.getInterfaces(), (proxy, method, args) -> {
-                System.out.println("Audit bean: " + beanName);
+                log.info("Audit bean: {}", beanName);
                 try {
                     return method.invoke(bean, args);
                 } finally {
-                    System.out.println("Audit save");
+                    log.info("Audit save");
                 }
             });
         }

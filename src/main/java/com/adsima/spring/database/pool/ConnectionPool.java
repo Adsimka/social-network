@@ -3,9 +3,11 @@ package com.adsima.spring.database.pool;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Value;
 
+@Slf4j
 @Component("pool1")
 @RequiredArgsConstructor
 public class ConnectionPool
@@ -17,11 +19,11 @@ public class ConnectionPool
 
     @PostConstruct
     private void init() {
-        System.out.println("Initialization of connection pool - " + ConnectionPool.class.getName());
+        log.info("Initialization of connection pool - {}", ConnectionPool.class.getName());
     }
 
     @PreDestroy
     private void destroy() {
-        System.out.println("Destroying connection pool");
+        log.info("Destroying connection pool");
     }
 }
