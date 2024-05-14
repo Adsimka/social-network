@@ -1,4 +1,4 @@
-package com.adsima.spring.service;
+package com.adsima.spring;
 
 import com.adsima.spring.database.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Qualifier;

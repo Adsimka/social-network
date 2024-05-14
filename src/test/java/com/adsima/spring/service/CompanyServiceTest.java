@@ -1,5 +1,7 @@
 package com.adsima.spring.service;
 
+import com.adsima.spring.CompanyService;
+import com.adsima.spring.UserService;
 import com.adsima.spring.database.entity.Company;
 import com.adsima.spring.database.repository.CRUDRepository;
 import com.adsima.spring.dto.CompanyReadDto;
@@ -7,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 

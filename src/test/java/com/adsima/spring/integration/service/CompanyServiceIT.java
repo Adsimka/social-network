@@ -1,20 +1,23 @@
-package com.adsima.integration;
+package com.adsima.spring.integration.service;
 
+import com.adsima.spring.CompanyService;
+import com.adsima.spring.config.DatabaseProperties;
 import com.adsima.spring.dto.CompanyReadDto;
-import com.adsima.spring.service.CompanyService;
+import com.adsima.spring.integration.annotation.IntegrationTest;
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@SpringBootTest
+@IntegrationTest
+@RequiredArgsConstructor
 public class CompanyServiceIT
 {
     private static final Long COMPANY_ID = 1L;
-    @Autowired
-    private CompanyService companyService;
+
+    private final CompanyService companyService;
+    private final DatabaseProperties databaseProperties;
 
     @Test
     void findById() {

@@ -1,4 +1,4 @@
-package com.adsima.spring.service;
+package com.adsima.spring;
 
 import com.adsima.spring.database.entity.Company;
 import com.adsima.spring.database.repository.CRUDRepository;
