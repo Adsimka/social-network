@@ -11,6 +11,4 @@ db:
 logging:
   level:
     root: INFO
-  file:
-    name: spring-application.log
-    path: /
+
