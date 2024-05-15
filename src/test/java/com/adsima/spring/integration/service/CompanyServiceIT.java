@@ -1,7 +1,6 @@
 package com.adsima.spring.integration.service;
 
 import com.adsima.spring.CompanyService;
-import com.adsima.spring.config.DatabaseProperties;
 import com.adsima.spring.dto.CompanyReadDto;
 import com.adsima.spring.integration.annotation.IntegrationTest;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +14,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class CompanyServiceIT
 {
     private static final Long COMPANY_ID = 1L;
-
     private final CompanyService companyService;
 
     @Test
