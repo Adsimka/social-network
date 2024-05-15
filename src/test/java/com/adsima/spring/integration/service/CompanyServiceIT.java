@@ -17,7 +17,6 @@ public class CompanyServiceIT
     private static final Long COMPANY_ID = 1L;
 
     private final CompanyService companyService;
-    private final DatabaseProperties databaseProperties;
 
     @Test
     void findById() {
