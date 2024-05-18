@@ -12,13 +12,14 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collections;
 import java.util.Optional;
 
 @Slf4j
 @Repository()
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
 @RequiredArgsConstructor
-public class CompanyRepository implements CRUDRepository<Long, Company>
+public class CompanyRepository implements CRUDRepository<Integer, Company>
 {
     @Qualifier("pool2")
     private final ConnectionPool connectionPool;
@@ -31,9 +32,9 @@ public class CompanyRepository implements CRUDRepository<Long, Company>
     }
 
     @Override
-    public Optional<Company> findById(Long id) {
+    public Optional<Company> findById(Integer id) {
         log.info("searching company by id: {}", id);
-        return Optional.of(new Company(id));
+        return Optional.of(new Company(id, null, Collections.emptyMap()));
     }
 
     @Override
