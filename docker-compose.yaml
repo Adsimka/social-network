@@ -1,18 +1,22 @@
-version: "3"
-
+version: '3.8'
 services:
-  postgres:
+
+  service-db:
     image: postgres:14.3
-    restart: always
     environment:
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_USER: postgres
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5433:5432"
+    restart: unless-stopped
 
   pgadmin:
+    container_name: pgadmin4_container
     image: dpage/pgadmin4:8.6
+    restart: always
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@pgadmin.com
-      PGADMIN_DEFAULT_PASSWORD: password
-      PGADMIN_LISTEN_PORT: 80
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
     ports:
-      - 15432:80
+      - "5050:80"
+
