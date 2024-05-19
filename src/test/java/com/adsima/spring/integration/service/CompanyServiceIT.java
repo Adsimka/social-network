@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @RequiredArgsConstructor
 public class CompanyServiceIT
 {
-    private static final Long COMPANY_ID = 1L;
+    private static final Integer COMPANY_ID = 1;
     private final CompanyService companyService;
 
     @Test

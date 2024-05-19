@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.Collections;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,11 +22,11 @@ import static org.mockito.Mockito.doReturn;
 @ExtendWith(SpringExtension.class)
 class CompanyServiceTest
 {
-    private static final Long COMPANY_ID = 1L;
+    private static final Integer COMPANY_ID = 1;
     @Mock
     private UserService userService;
     @Mock
-    private CRUDRepository<Long, Company> crudRepository;
+    private CRUDRepository<Integer, Company> crudRepository;
     @Mock
     private ApplicationEventPublisher eventPublisher;
     @InjectMocks
@@ -33,7 +34,7 @@ class CompanyServiceTest
 
     @Test
     void findById() {
-        doReturn(Optional.of(new Company(COMPANY_ID)))
+        doReturn(Optional.of(new Company(COMPANY_ID, null, Collections.emptyMap())))
                 .when(crudRepository).findById(COMPANY_ID);
 
         var actualResult = companyService.findById(COMPANY_ID);
