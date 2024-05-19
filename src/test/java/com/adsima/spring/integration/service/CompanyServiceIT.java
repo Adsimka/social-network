@@ -1,6 +1,6 @@
 package com.adsima.spring.integration.service;
 
-import com.adsima.spring.CompanyService;
+import com.adsima.spring.service.CompanyService;
 import com.adsima.spring.dto.CompanyReadDto;
 import com.adsima.spring.integration.annotation.IntegrationTest;
 import lombok.RequiredArgsConstructor;

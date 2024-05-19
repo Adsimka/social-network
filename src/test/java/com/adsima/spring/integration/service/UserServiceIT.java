@@ -1,6 +1,6 @@
 package com.adsima.spring.integration.service;
 
-import com.adsima.spring.UserService;
+import com.adsima.spring.service.UserService;
 import com.adsima.spring.integration.annotation.IntegrationTest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

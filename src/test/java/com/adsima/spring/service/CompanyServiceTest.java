@@ -1,7 +1,5 @@
 package com.adsima.spring.service;
 
-import com.adsima.spring.CompanyService;
-import com.adsima.spring.UserService;
 import com.adsima.spring.database.entity.Company;
 import com.adsima.spring.database.repository.CRUDRepository;
 import com.adsima.spring.dto.CompanyReadDto;
