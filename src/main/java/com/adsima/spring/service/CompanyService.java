@@ -2,6 +2,7 @@ package com.adsima.spring.service;
 
 import com.adsima.spring.database.entity.Company;
 import com.adsima.spring.database.repository.CRUDRepository;
+import com.adsima.spring.database.repository.CompanyRepository;
 import com.adsima.spring.dto.CompanyReadDto;
 import com.adsima.spring.listener.entity.AccessType;
 import com.adsima.spring.listener.entity.EntityEvent;
@@ -16,10 +17,10 @@ import java.util.Optional;
 public class CompanyService {
 
     private final UserService userService;
-    private final CRUDRepository<Integer, Company> companyRepository;
+    private final CompanyRepository companyRepository;
     private final ApplicationEventPublisher eventPublisher;
 
-    public CompanyService(UserService userService, CRUDRepository<Integer, Company> companyRepository, ApplicationEventPublisher eventPublisher) {
+    public CompanyService(UserService userService, CompanyRepository companyRepository, ApplicationEventPublisher eventPublisher) {
         this.userService = userService;
         this.companyRepository = companyRepository;
         this.eventPublisher = eventPublisher;
@@ -33,4 +34,7 @@ public class CompanyService {
                 });
     }
 
+    public void delete(Company company) {
+        companyRepository.delete(company);
+    }
 }

@@ -1,6 +1,6 @@
 package com.adsima.spring.integration.service;
 
-import com.adsima.spring.service.CompanyService;
+import com.adsima.spring.database.repository.CompanyRepository;
 import com.adsima.spring.dto.CompanyReadDto;
 import com.adsima.spring.integration.annotation.IntegrationTest;
 import lombok.RequiredArgsConstructor;
@@ -14,11 +14,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class CompanyServiceIT
 {
     private static final Integer COMPANY_ID = 1;
-    private final CompanyService companyService;
+    private final CompanyRepository companyRepository;
 
     @Test
     void findById() {
-        var actualResult = companyService.findById(COMPANY_ID);
+        var actualResult = companyRepository.findById(COMPANY_ID);
         assertTrue(actualResult.isPresent());
 
         var exceptedResult = new CompanyReadDto(COMPANY_ID);
