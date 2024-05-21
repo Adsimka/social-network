@@ -9,9 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class UserService
 {
-    private final UserRepository userRepository;
-
-    public UserService(@Qualifier("userRepository") UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+//    private final UserRepository userRepository;
+//
+//    public UserService(@Qualifier("userRepository") UserRepository userRepository) {
+//        this.userRepository = userRepository;
+//    }
 }

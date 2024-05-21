@@ -4,6 +4,7 @@ import com.adsima.spring.database.entity.Company;
 import com.adsima.spring.database.repository.CompanyRepository;
 import com.adsima.spring.integration.annotation.IntegrationTest;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 
@@ -22,10 +23,16 @@ class CompanyRepositoryTest {
     private final CompanyRepository companyRepository;
 
     @Test
+    void checkFindByNameNamedQuery() {
+        TypedQuery<Company> findByName = entityManager.createNamedQuery("Company.findByName", Company.class);
+        findByName.setParameter("name", "google");
+
+        assertFalse(findByName.getResultList().isEmpty());
+    }
+
+    @Test
     void checkFindAllByNameContaining() {
         List<Company> companies = companyRepository.findAllByNameContainingIgnoreCase("a");
-        companies.forEach(System.out::println);
-
         assertFalse(companies.isEmpty());
     }
 

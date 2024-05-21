@@ -1,17 +1,17 @@
 package com.adsima.spring.database.repository;
 
-import com.adsima.spring.database.pool.ConnectionPool;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.config.BeanDefinition;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Repository;
+import com.adsima.spring.database.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
-@Repository
-@Scope(BeanDefinition.SCOPE_PROTOTYPE)
-@RequiredArgsConstructor
-public class UserRepository
+import java.util.List;
+
+public interface UserRepository extends JpaRepository<User, Long>
 {
-    @Qualifier("pool1")
-    private final ConnectionPool connectionPool;
+    @Query("select u from User u where u.firstname like %:firstname% " +
+            "and u.lastname like %:lastname%")
+    List<User> findAllBy(String firstname, String lastname);
+//
+//    @Query("SELECT u.* FROM users u WHERE u.username = :username")
+//    List<User> findByUsername(String username);
 }
