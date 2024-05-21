@@ -11,7 +11,8 @@ public interface UserRepository extends JpaRepository<User, Long>
     @Query("select u from User u where u.firstname like %:firstname% " +
             "and u.lastname like %:lastname%")
     List<User> findAllBy(String firstname, String lastname);
-//
-//    @Query("SELECT u.* FROM users u WHERE u.username = :username")
-//    List<User> findByUsername(String username);
+
+    @Query(value = "SELECT u.* FROM users u WHERE u.username = :username",
+    nativeQuery = true)
+    List<User> findByUsername(String username);
 }

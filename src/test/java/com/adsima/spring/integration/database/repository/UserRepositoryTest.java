@@ -23,10 +23,10 @@ class UserRepositoryTest
         List<User> users = userRepository.findAllBy("a", "ov");
         assertThat(users).hasSize(3);
     }
-//
-//    @Test
-//    void findByUsername() {
-//        List<User> users = userRepository.findByUsername("petr@gmail.com");
-//        assertThat(users.isEmpty()).isFalse();
-//    }
+
+    @Test
+    void findByUsername() {
+        List<User> users = userRepository.findByUsername("petr@gmail.com");
+        assertThat(users.isEmpty()).isFalse();
+    }
 }
