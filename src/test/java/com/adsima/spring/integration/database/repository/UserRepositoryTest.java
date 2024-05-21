@@ -1,5 +1,6 @@
 package com.adsima.spring.integration.database.repository;
 
+import com.adsima.spring.database.entity.Role;
 import com.adsima.spring.database.entity.User;
 import com.adsima.spring.database.repository.UserRepository;
 import com.adsima.spring.integration.annotation.IntegrationTest;
@@ -17,6 +18,18 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserRepositoryTest
 {
     private final UserRepository userRepository;
+
+    @Test
+    void checkUpdate() {
+        var ivan = userRepository.getById(1L);
+        assertSame(Role.ADMIN, ivan.getRole());
+
+        var resultCount = userRepository.updateRole(Role.USER.toString(), 1L, 5L);
+        assertEquals(2, resultCount);
+
+        var theSameIvan = userRepository.getById(1L);
+        assertSame(Role.USER, theSameIvan.getRole());
+    }
 
     @Test
     void findAllBy() {
