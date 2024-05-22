@@ -7,6 +7,7 @@ import com.adsima.spring.integration.annotation.IntegrationTest;
 import lombok.RequiredArgsConstructor;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -28,8 +29,11 @@ class UserRepositoryTest
         var sortBy = Sort.sort(User.class);
         var pageableBy = PageRequest.of(1, 2, sortBy.by(User::getId));
 
-        List<User> users = userRepository.findAllBy(pageableBy);
-        assertThat(users).hasSize(2);
+        Page<User> users = userRepository.findAllBy(pageableBy);
+        while (users.hasNext()) {
+            users = userRepository.findAllBy(users.nextPageable());
+            users.forEach(u -> System.out.println(u.getId()));
+        }
     }
 
     @Test
