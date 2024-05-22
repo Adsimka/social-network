@@ -3,6 +3,7 @@ package com.adsima.spring.integration.database.repository;
 import com.adsima.spring.database.entity.Role;
 import com.adsima.spring.database.entity.User;
 import com.adsima.spring.database.repository.UserRepository;
+import com.adsima.spring.dto.PersonalInfo;
 import com.adsima.spring.integration.annotation.IntegrationTest;
 import lombok.RequiredArgsConstructor;
 import org.assertj.core.api.Assertions;
@@ -23,6 +24,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserRepositoryTest
 {
     private final UserRepository userRepository;
+
+    @Test
+    void checkProjection() {
+        List<PersonalInfo> personalInfos = userRepository.findAllByCompanyId(1);
+        assertThat(personalInfos).hasSize(2);
+    }
 
     @Test
     void checkPageable() {
