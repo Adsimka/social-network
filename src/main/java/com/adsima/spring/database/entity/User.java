@@ -7,15 +7,15 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@EqualsAndHashCode(of = "username")
-@ToString(exclude = "usersChats")
+@ToString(exclude = "userChats")
+@EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
 @Table(name = "users")
-public class User implements BaseEntity<Long> {
+public class User extends AuditingEntity<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

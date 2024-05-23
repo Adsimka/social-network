@@ -7,18 +7,17 @@ import com.adsima.spring.dto.PersonalInfo;
 import com.adsima.spring.dto.UserFilter;
 import com.adsima.spring.integration.annotation.IntegrationTest;
 import lombok.RequiredArgsConstructor;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 @IntegrationTest
 @RequiredArgsConstructor
@@ -27,13 +26,23 @@ class UserRepositoryTest
     private final UserRepository userRepository;
 
     @Test
+    void checkAuditingEntity() {
+        User user = userRepository.findById(1L).get();
+        user.setBirthDate(user.getBirthDate().plusMonths(1L));
+        userRepository.flush();
+
+        User user1 = userRepository.findById(1L).get();
+        System.out.println(user1.getModifiedAt());
+    }
+
+    @Test
     void checkCustomRepository() {
         UserFilter filter = new UserFilter(
                 null,
                 "%ov%",
                 LocalDate.now());
         List<User> users = userRepository.findAllByFilter(filter);
-        System.out.println(users);
+        users.forEach(System.out::println);
     }
 
     @Test
