@@ -4,6 +4,7 @@ import com.adsima.spring.database.entity.Role;
 import com.adsima.spring.database.entity.User;
 import com.adsima.spring.database.repository.UserRepository;
 import com.adsima.spring.dto.PersonalInfo;
+import com.adsima.spring.dto.UserFilter;
 import com.adsima.spring.integration.annotation.IntegrationTest;
 import lombok.RequiredArgsConstructor;
 import org.assertj.core.api.Assertions;
@@ -24,6 +25,16 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserRepositoryTest
 {
     private final UserRepository userRepository;
+
+    @Test
+    void checkCustomRepository() {
+        UserFilter filter = new UserFilter(
+                null,
+                "%ov%",
+                LocalDate.now());
+        List<User> users = userRepository.findAllByFilter(filter);
+        System.out.println(users);
+    }
 
     @Test
     void checkProjection() {

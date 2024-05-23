@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.*;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Long>, FilterUserRepository {
 
     @Query(name = "SELECT firstname," +
             "lastname," +
