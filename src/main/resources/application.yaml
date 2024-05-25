@@ -10,6 +10,7 @@ db:
 
 logging:
   level:
+    org.springframework.jdbc.core: TRACE
     root: INFO
 
 spring:

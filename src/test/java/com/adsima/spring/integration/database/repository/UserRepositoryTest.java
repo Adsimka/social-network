@@ -1,10 +1,10 @@
 package com.adsima.spring.integration.database.repository;
 
-import com.adsima.spring.database.entity.QUser;
 import com.adsima.spring.database.entity.Role;
 import com.adsima.spring.database.entity.User;
 import com.adsima.spring.database.repository.UserRepository;
 import com.adsima.spring.dto.PersonalInfo;
+import com.adsima.spring.dto.PersonalInfo2;
 import com.adsima.spring.dto.UserFilter;
 import com.adsima.spring.integration.annotation.IntegrationTest;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.test.annotation.Commit;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -26,6 +25,12 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 class UserRepositoryTest
 {
     private final UserRepository userRepository;
+
+    @Test
+    void checkJDBCTemplate() {
+        List<PersonalInfo> infoList = userRepository.findAllByCompanyIdAndRole(1, Role.USER);
+        System.out.println();
+    }
 
     @Test
     void checkCustomRepository() {
