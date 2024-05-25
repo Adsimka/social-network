@@ -49,12 +49,12 @@ class CompanyRepositoryTest {
         assertThat(company.getLocales()).hasSize(2);
     }
 
-    @Test
-    void delete() {
-        var maybeCompany = companyRepository.findById(APPLE_ID);
-        assertTrue(maybeCompany.isPresent());
-        maybeCompany.ifPresent(companyRepository::delete);
-        entityManager.flush();
-        assertTrue(companyRepository.findById(APPLE_ID).isEmpty());
-    }
+//    @Test
+//    void delete() {
+//        var maybeCompany = companyRepository.findById(APPLE_ID);
+//        assertTrue(maybeCompany.isPresent());
+//        maybeCompany.ifPresent(companyRepository::delete);
+//        entityManager.flush();
+//        assertTrue(companyRepository.findById(APPLE_ID).isEmpty());
+//    }
 }

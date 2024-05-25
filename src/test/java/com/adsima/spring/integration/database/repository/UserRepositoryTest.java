@@ -1,5 +1,6 @@
 package com.adsima.spring.integration.database.repository;
 
+import com.adsima.spring.database.entity.QUser;
 import com.adsima.spring.database.entity.Role;
 import com.adsima.spring.database.entity.User;
 import com.adsima.spring.database.repository.UserRepository;
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.test.annotation.Commit;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -26,23 +28,13 @@ class UserRepositoryTest
     private final UserRepository userRepository;
 
     @Test
-    void checkAuditingEntity() {
-        User user = userRepository.findById(1L).get();
-        user.setBirthDate(user.getBirthDate().plusMonths(1L));
-        userRepository.flush();
-
-        User user1 = userRepository.findById(1L).get();
-        System.out.println(user1.getModifiedAt());
-    }
-
-    @Test
     void checkCustomRepository() {
         UserFilter filter = new UserFilter(
                 null,
-                "%ov%",
+                "ov",
                 LocalDate.now());
         List<User> users = userRepository.findAllByFilter(filter);
-        users.forEach(System.out::println);
+        assertThat(users).hasSize(4);
     }
 
     @Test
