@@ -27,6 +27,13 @@ class UserRepositoryTest
     private final UserRepository userRepository;
 
     @Test
+    void checkBatchUpdate() {
+        List<User> users = userRepository.findAll();
+        userRepository.updateCompanyAndRole(users);
+        System.out.println();
+    }
+
+    @Test
     void checkJDBCTemplate() {
         List<PersonalInfo> infoList = userRepository.findAllByCompanyIdAndRole(1, Role.USER);
         System.out.println();
