@@ -29,6 +29,11 @@
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="04cf6d72-c435-4a0c-952f-6dac6a0a4e74" />
   </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="04cf6d72-c435-4a0c-952f-6dac6a0a4e74" dataset="public.databasechangeloglock" active-filter-id="" />
+    <filter-actions connection-id="04cf6d72-c435-4a0c-952f-6dac6a0a4e74" dataset="public.revision" active-filter-id="" />
+    <filter-actions connection-id="04cf6d72-c435-4a0c-952f-6dac6a0a4e74" dataset="public.payment" active-filter-id="" />
+  </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
   </component>
