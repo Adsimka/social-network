@@ -1,12 +1,23 @@
 package com.adsima.spring.http.controller;
 
+import com.adsima.spring.dto.UserReadDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/api/greeting")
+@SessionAttributes({"user"})
 public class GreetingController {
+
+    @GetMapping("/hello")
+    public ModelAndView hello(ModelAndView modelAndView,
+                              @RequestParam("username") String username) {
+        modelAndView.setViewName("greeting/hello");
+        modelAndView.addObject("user", new UserReadDto(1L, username));
+
+        return modelAndView;
+    }
 
     @GetMapping("/hello/{id}")
     public ModelAndView hello(ModelAndView modelAndView,
@@ -19,8 +30,10 @@ public class GreetingController {
     }
 
     @RequestMapping("/bye")
-    public ModelAndView bye(ModelAndView modelAndView) {
+    public ModelAndView bye(ModelAndView modelAndView,
+                            @SessionAttribute UserReadDto user) {
         modelAndView.setViewName("greeting/bye");
+
         return modelAndView;
     }
 }
