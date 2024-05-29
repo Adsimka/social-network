@@ -5,6 +5,6 @@
     <title>Bye</title>
 </head>
 <body>
-    Bye ${requestScope.user.username}!
+    Bye ${requestScope.userDto.username}!
 </body>
 </html>

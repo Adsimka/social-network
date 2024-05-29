@@ -2,6 +2,7 @@ package com.adsima.spring.http.controller;
 
 import com.adsima.spring.dto.UserReadDto;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -11,29 +12,24 @@ import org.springframework.web.servlet.ModelAndView;
 public class GreetingController {
 
     @GetMapping("/hello")
-    public ModelAndView hello(ModelAndView modelAndView,
-                              @RequestParam("username") String username) {
-        modelAndView.setViewName("greeting/hello");
-        modelAndView.addObject("user", new UserReadDto(1L, username));
-
-        return modelAndView;
+    public String hello(Model model,
+                        @RequestParam("username") String username,
+                        @ModelAttribute("userDto") UserReadDto userReadDto) {
+        return "greeting/hello";
     }
 
     @GetMapping("/hello/{id}")
-    public ModelAndView hello(ModelAndView modelAndView,
+    public String hello(Model model,
                               @RequestParam Integer age,
                               @RequestHeader String accept,
                               @PathVariable Integer id,
                               @CookieValue("JSESSIONID") String jSessionId) {
-        modelAndView.setViewName("greeting/hello");
-        return modelAndView;
+        return "greeting/hello";
     }
 
     @RequestMapping("/bye")
-    public ModelAndView bye(ModelAndView modelAndView,
+    public String bye(ModelAndView modelAndView,
                             @SessionAttribute UserReadDto user) {
-        modelAndView.setViewName("greeting/bye");
-
-        return modelAndView;
+        return "greeting/bye";
     }
 }
