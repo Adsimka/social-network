@@ -38,7 +38,7 @@ class CompanyServiceTest
         var actualResult = companyRepository.findById(COMPANY_ID);
         assertTrue(actualResult.isPresent());
 
-        var exceptedResult = new CompanyReadDto(COMPANY_ID);
+        var exceptedResult = new CompanyReadDto(COMPANY_ID, null);
         actualResult.ifPresent(actual -> assertThat(exceptedResult).isEqualTo(actual));
     }
 }

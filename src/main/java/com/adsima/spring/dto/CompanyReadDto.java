@@ -1,5 +1,9 @@
 package com.adsima.spring.dto;
 
-public record CompanyReadDto(Integer id)
+import lombok.Builder;
+
+@Builder
+public record CompanyReadDto(Integer id,
+                             String name)
 {
 }
