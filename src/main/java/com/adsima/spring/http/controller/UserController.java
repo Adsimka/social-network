@@ -1,7 +1,6 @@
 package com.adsima.spring.http.controller;
 
 import com.adsima.spring.dto.UserCreateEditDto;
-import com.adsima.spring.dto.UserReadDto;
 import com.adsima.spring.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
