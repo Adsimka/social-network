@@ -1,5 +1,6 @@
 package com.adsima.spring.http.controller;
 
+import com.adsima.spring.database.entity.Role;
 import com.adsima.spring.dto.UserCreateEditDto;
 import com.adsima.spring.service.UserService;
 import lombok.RequiredArgsConstructor;
