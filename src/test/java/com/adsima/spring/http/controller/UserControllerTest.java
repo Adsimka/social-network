@@ -1,7 +1,5 @@
 package com.adsima.spring.http.controller;
 
-import com.adsima.spring.dto.UserCreateEditDto;
-import com.adsima.spring.dto.UserCreateEditDto.Fields;
 import com.adsima.spring.integration.IntegrationTestBase;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;

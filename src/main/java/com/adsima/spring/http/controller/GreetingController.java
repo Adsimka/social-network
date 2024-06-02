@@ -15,6 +15,8 @@ public class GreetingController {
     public String hello(Model model,
                         @RequestParam("username") String username,
                         @ModelAttribute("userDto") UserReadDto userReadDto) {
+        model.addAttribute("user", userReadDto);
+
         return "greeting/hello";
     }
 
