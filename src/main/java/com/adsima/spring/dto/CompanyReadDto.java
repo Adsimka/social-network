@@ -4,6 +4,5 @@ import lombok.Builder;
 
 @Builder
 public record CompanyReadDto(Integer id,
-                             String name)
-{
+                             String name) {
 }

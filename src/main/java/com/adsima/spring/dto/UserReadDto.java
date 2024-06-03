@@ -9,18 +9,11 @@ import java.time.LocalDate;
 @Builder
 @Value
 public class UserReadDto {
-
     Long id;
-
     String username;
-
     LocalDate birthDate;
-
     String firstname;
-
     String lastname;
-
     Role role;
-
-    CompanyReadDto companyReadDto;
+    CompanyReadDto company;
 }

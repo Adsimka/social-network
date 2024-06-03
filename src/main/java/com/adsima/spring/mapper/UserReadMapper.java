@@ -26,7 +26,7 @@ public class UserReadMapper implements Mapper<User, UserReadDto> {
                 .username(object.getUsername())
                 .role(object.getRole())
                 .birthDate(object.getBirthDate())
-                .companyReadDto(companyReadDto)
+                .company(companyReadDto)
                 .build();
     }
 }
