@@ -1,14 +1,20 @@
 package com.adsima.spring.http.controller;
 
+import com.adsima.spring.dto.PageResponse;
 import com.adsima.spring.dto.UserCreateEditDto;
 import com.adsima.spring.database.entity.Role;
 import com.adsima.spring.dto.UserFilter;
+import com.adsima.spring.dto.UserReadDto;
 import com.adsima.spring.service.CompanyService;
 import com.adsima.spring.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -22,8 +28,10 @@ public class UserController {
     private final CompanyService companyService;
 
     @GetMapping
-    public String findAll(Model model, UserFilter userFilter) {
-        model.addAttribute("users", userService.findAll(userFilter));
+    public String findAll(Model model, UserFilter userFilter, Pageable pageable) {
+        Page<UserReadDto> dtoPage = userService.findAll(userFilter, pageable);
+        model.addAttribute("users", PageResponse.of(dtoPage));
+        model.addAttribute("filter", userFilter);
         return "user/users";
     }
 
@@ -49,17 +57,21 @@ public class UserController {
 
     @PostMapping
 //    @ResponseStatus(HttpStatus.CREATED)
-    public String create(@ModelAttribute UserCreateEditDto user, RedirectAttributes redirectAttributes) {
-//        if (true) {
-//            redirectAttributes.addFlashAttribute("user", user);
-//            return "redirect:/users/registration";
-//        }
+    public String create(@ModelAttribute @Validated UserCreateEditDto user,
+                         BindingResult bindingResult,
+                         RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("user", user);
+            redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
+            return "redirect:/users/registration";
+        }
         return "redirect:/users/" + userService.create(user).getId();
     }
 
     //    @PutMapping("/{id}")
     @PostMapping("/{id}/update")
-    public String update(@PathVariable("id") Long id, @ModelAttribute UserCreateEditDto user) {
+    public String update(@PathVariable("id") Long id,
+                         @ModelAttribute @Validated UserCreateEditDto user) {
         return userService.update(id, user)
                 .map(it -> "redirect:/users/{id}")
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
