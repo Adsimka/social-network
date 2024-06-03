@@ -2,6 +2,7 @@ package com.adsima.spring.service;
 
 import com.adsima.spring.database.repository.UserRepository;
 import com.adsima.spring.dto.UserCreateEditDto;
+import com.adsima.spring.dto.UserFilter;
 import com.adsima.spring.dto.UserReadDto;
 import com.adsima.spring.mapper.UserCreateEditMapper;
 import com.adsima.spring.mapper.UserReadMapper;
@@ -21,6 +22,12 @@ public class UserService
 
     private final UserReadMapper userReadMapper;
     private final UserCreateEditMapper userCreateEditMapper;
+
+    public List<UserReadDto> findAll(UserFilter userFilter) {
+        return userRepository.findAllByFilter(userFilter).stream()
+                .map(userReadMapper::map)
+                .toList();
+    }
 
     public List<UserReadDto> findAll() {
         return userRepository.findAll().stream()

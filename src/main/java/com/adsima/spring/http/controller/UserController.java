@@ -2,6 +2,7 @@ package com.adsima.spring.http.controller;
 
 import com.adsima.spring.dto.UserCreateEditDto;
 import com.adsima.spring.database.entity.Role;
+import com.adsima.spring.dto.UserFilter;
 import com.adsima.spring.service.CompanyService;
 import com.adsima.spring.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -21,9 +22,8 @@ public class UserController {
     private final CompanyService companyService;
 
     @GetMapping
-    public String findAll(Model model) {
-//        model.addAttribute("users", userService.findAll(filter));
-        model.addAttribute("users", userService.findAll());
+    public String findAll(Model model, UserFilter userFilter) {
+        model.addAttribute("users", userService.findAll(userFilter));
         return "user/users";
     }
 
