@@ -1,8 +1,8 @@
 package com.adsima.spring.http.controller;
 
+import com.adsima.spring.database.entity.Role;
 import com.adsima.spring.dto.PageResponse;
 import com.adsima.spring.dto.UserCreateEditDto;
-import com.adsima.spring.database.entity.Role;
 import com.adsima.spring.dto.UserFilter;
 import com.adsima.spring.dto.UserReadDto;
 import com.adsima.spring.service.CompanyService;
@@ -11,6 +11,7 @@ import com.adsima.spring.validation.groups.CreateAction;
 import com.adsima.spring.validation.groups.UpdateAction;
 import jakarta.validation.groups.Default;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+@Slf4j
 @Controller
 @RequestMapping("/users")
 @RequiredArgsConstructor
@@ -74,7 +76,7 @@ public class UserController {
     //    @PutMapping("/{id}")
     @PostMapping("/{id}/update")
     public String update(@PathVariable("id") Long id,
-                         @ModelAttribute @Validated({UpdateAction.class}) UserCreateEditDto user) {
+                         @ModelAttribute @Validated({Default.class, UpdateAction.class}) UserCreateEditDto user) {
         return userService.update(id, user)
                 .map(it -> "redirect:/users/{id}")
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
