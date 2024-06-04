@@ -4,11 +4,8 @@ import com.adsima.spring.database.entity.Role;
 import com.adsima.spring.dto.UserCreateEditDto;
 import com.adsima.spring.dto.UserReadDto;
 import com.adsima.spring.integration.IntegrationTestBase;
-import com.adsima.spring.mapper.UserReadMapper;
 import com.adsima.spring.service.UserService;
-import com.adsima.spring.integration.annotation.IntegrationTest;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -16,7 +13,8 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @RequiredArgsConstructor
 public class UserServiceIT extends IntegrationTestBase
@@ -28,7 +26,7 @@ public class UserServiceIT extends IntegrationTestBase
 
     @Test
     void findAll() {
-        List<UserReadDto> result = userService.findByAll();
+        List<UserReadDto> result = userService.findAll();
         assertThat(result).hasSize(5);
     }
 
@@ -47,7 +45,7 @@ public class UserServiceIT extends IntegrationTestBase
         assertEquals(user.getFirstname(), dto.getFirstname());
         assertEquals(user.getLastname(), dto.getLastname());
         assertEquals(user.getBirthDate(), dto.getBirthDate());
-        assertEquals(user.getCompanyId(), dto.getCompanyReadDto().id());
+        assertEquals(user.getCompanyId(), dto.getCompany().id());
         assertEquals(user.getRole(), dto.getRole());
     }
 
@@ -62,7 +60,7 @@ public class UserServiceIT extends IntegrationTestBase
             assertEquals(user.getFirstname(), d.getFirstname());
             assertEquals(user.getLastname(), d.getLastname());
             assertEquals(user.getBirthDate(), d.getBirthDate());
-            assertEquals(user.getCompanyId(), d.getCompanyReadDto().id());
+            assertEquals(user.getCompanyId(), d.getCompany().id());
             assertEquals(user.getRole(), d.getRole());
         });
     }
