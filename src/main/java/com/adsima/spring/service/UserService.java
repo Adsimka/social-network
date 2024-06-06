@@ -9,10 +9,12 @@ import com.adsima.spring.mapper.UserCreateEditMapper;
 import com.adsima.spring.mapper.UserReadMapper;
 import com.querydsl.core.types.Predicate;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,6 +27,7 @@ import static com.adsima.spring.database.entity.QUser.user;
 public class UserService
 {
     private final UserRepository userRepository;
+    private final ImageService imageService;
 
     private final UserReadMapper userReadMapper;
     private final UserCreateEditMapper userCreateEditMapper;
@@ -54,7 +57,10 @@ public class UserService
     @Transactional
     public UserReadDto create(UserCreateEditDto user) {
         return Optional.of(user)
-                .map(userCreateEditMapper::map)
+                .map(dto -> {
+                    uploadImage(dto.getImage());
+                    return userCreateEditMapper.map(dto);
+                })
                 .map(userRepository::saveAndFlush)
                 .map(userReadMapper::map)
                 .orElseThrow();
@@ -63,7 +69,10 @@ public class UserService
     @Transactional
     public Optional<UserReadDto> update(Long id, UserCreateEditDto user) {
         return userRepository.findById(id)
-                .map(entity -> userCreateEditMapper.map(user, entity))
+                .map(entity -> {
+                    uploadImage(user.getImage());
+                    return userCreateEditMapper.map(user, entity);
+                })
                 .map(userRepository::saveAndFlush)
                 .map(userReadMapper::map);
     }
@@ -77,5 +86,12 @@ public class UserService
                     return true;
                 })
                 .orElse(false);
+    }
+
+    @SneakyThrows
+    private void uploadImage(MultipartFile image) {
+        if(!image.isEmpty()) {
+            imageService.upload(image.getOriginalFilename(), image.getInputStream());
+        }
     }
 }
