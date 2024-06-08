@@ -49,7 +49,7 @@ public class UserController {
                     model.addAttribute("companies", companyService.findAll());
                     return "user/user";
                 })
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+                .orElseThrow(() ->  new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @GetMapping("/registration")
