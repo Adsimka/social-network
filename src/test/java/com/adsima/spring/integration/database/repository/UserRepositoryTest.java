@@ -96,7 +96,7 @@ class UserRepositoryTest extends IntegrationTestBase
 
     @Test
     void findByUsername() {
-        List<User> users = userRepository.findByUsername("petr@gmail.com");
+        List<User> users = userRepository.findAllByUsername("petr@gmail.com");
         assertThat(users.isEmpty()).isFalse();
     }
 }

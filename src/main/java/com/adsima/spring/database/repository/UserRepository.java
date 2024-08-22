@@ -13,6 +13,7 @@ import org.springframework.data.repository.history.RevisionRepository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public interface UserRepository extends
         JpaRepository<User, Long>,
@@ -44,7 +45,9 @@ public interface UserRepository extends
 
     @Query(value = "SELECT u.* FROM users u WHERE u.username = :username",
             nativeQuery = true)
-    List<User> findByUsername(String username);
+    List<User> findAllByUsername(String username);
+
+
 
     @Modifying(clearAutomatically = true, flushAutomatically = true)
     @Query(value = "UPDATE users " +
@@ -52,4 +55,6 @@ public interface UserRepository extends
             "WHERE id in (:ids)",
             nativeQuery = true)
     int updateRole(String role, Long... ids);
+
+    Optional<User> findByUsername(String username);
 }
