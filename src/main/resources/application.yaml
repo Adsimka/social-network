@@ -1,6 +1,12 @@
 server:
   port: 8090
 
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
 db:
   username: postgres
   password: pass
@@ -36,9 +42,3 @@ spring:
       format_sql: true2
       hbm2ddl.auto: update
     open-in-view: false
-
-springdoc:
-  api-docs:
-    path: /v3/api-docs
-  swagger-ui:
-    path: /swagger-ui.html
