@@ -27,6 +27,10 @@ public class SecurityConfiguration {
                 .formLogin(form -> form.loginPage("/login")
                         .successForwardUrl("/users")
                         .permitAll())
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login")
+                        .deleteCookies("JSESSIONID"))
                 .csrf(AbstractHttpConfigurer::disable);
 
         return http.build();
