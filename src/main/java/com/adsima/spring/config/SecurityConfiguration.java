@@ -1,5 +1,6 @@
 package com.adsima.spring.config;
 
+import com.adsima.spring.database.entity.Role;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.context.annotation.Bean;
@@ -13,6 +14,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import static com.adsima.spring.database.entity.Role.ADMIN;
+
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfiguration {
@@ -20,13 +23,20 @@ public class SecurityConfiguration {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests(requests ->
-                    requests.anyRequest()
-                            .authenticated()
+                .authorizeHttpRequests(urlConfig -> urlConfig
+                        .requestMatchers(
+                                "/login",
+                                "/users/registration",
+                                "/v3/api-docs/**",
+                                "/swagger-ui/**")
+                        .permitAll()
+                        .requestMatchers("/admin/**").hasAuthority(ADMIN.getAuthority())
+                        .requestMatchers("/users/{\\d+}/delete").hasAuthority(ADMIN.getAuthority())
+                        .anyRequest().authenticated()
                 )
                 .formLogin(form -> form.loginPage("/login")
                         .successForwardUrl("/users")
-                        .permitAll())
+                )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/login")
