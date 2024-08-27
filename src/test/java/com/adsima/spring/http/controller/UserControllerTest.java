@@ -4,6 +4,7 @@ import com.adsima.spring.integration.IntegrationTestBase;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static com.adsima.spring.dto.UserCreateEditDto.Fields.*;
@@ -30,6 +31,7 @@ class UserControllerTest extends IntegrationTestBase {
         mockMvc.perform(post("/users")
                         .param(firstname, "Test")
                         .param(lastname, "TestTest")
+                        .param(rawPassword, "test")
                         .param(username, "Test@gmail.ru")
                         .param(role, "ADMIN")
                         .param(companyId, "1")

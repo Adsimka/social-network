@@ -7,6 +7,7 @@ import com.adsima.spring.integration.IntegrationTestBase;
 import com.adsima.spring.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
+import org.springframework.mock.web.MockMultipartFile;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -62,6 +63,7 @@ public class UserServiceIT extends IntegrationTestBase
             assertEquals(user.getBirthDate(), d.getBirthDate());
             assertEquals(user.getCompanyId(), d.getCompany().id());
             assertEquals(user.getRole(), d.getRole());
+            assertEquals(user.getImage().getOriginalFilename(), d.getImage());
         });
     }
 
@@ -74,11 +76,13 @@ public class UserServiceIT extends IntegrationTestBase
     private UserCreateEditDto buildUserEditDto() {
         return UserCreateEditDto.builder()
                 .username("test@mail.ru")
+                .rawPassword("test")
                 .firstname("Test")
                 .lastname("Test")
                 .birthDate(LocalDate.now())
                 .role(Role.ADMIN)
                 .companyId(COMPANY_1)
+                .image(new MockMultipartFile("test", new byte[0]))
                 .build();
     }
 }
