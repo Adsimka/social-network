@@ -35,13 +35,17 @@ public class SecurityConfiguration {
                         .requestMatchers("/users/{\\d+}/delete").hasAuthority(ADMIN.getAuthority())
                         .anyRequest().authenticated()
                 )
-                .formLogin(form -> form.loginPage("/login")
-                        .successForwardUrl("/users")
-                )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/login")
                         .deleteCookies("JSESSIONID"))
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .successForwardUrl("/users")
+                )
+                .oauth2Login(config -> config
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/users"))
                 .csrf(AbstractHttpConfigurer::disable);
 
         return http.build();
